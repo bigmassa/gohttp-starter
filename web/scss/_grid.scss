@@ -1,0 +1,46 @@
+@use '../../node_modules/@binaryknights/sass-mixins/scss/sass-mixins';
+
+// FLEX GRID SYSTEM
+// ----------------------------------------------------------------
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+);
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+$flex-grid-columns: 12;
+$flex-grid-gutter-width: 30px;
+
+// containers
+.container {
+  @include sass-mixins.make-container($flex-grid-gutter-width);
+  @include sass-mixins.make-container-max-widths(
+    $container-max-widths,
+    $breakpoints
+  );
+}
+
+// fluid container
+.container-fluid {
+  @include sass-mixins.make-container($flex-grid-gutter-width);
+}
+
+// row
+.row {
+  @include sass-mixins.make-flex-grid-row($flex-grid-gutter-width);
+}
+
+// columns
+@include sass-mixins.make-flex-grid-columns(
+  $flex-grid-columns,
+  $flex-grid-gutter-width,
+  $breakpoints
+);
