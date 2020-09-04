@@ -25,7 +25,6 @@ func main() {
 
 	// setup database
 	db, _ := conf.ConnectDB()
-	defer db.Close()
 	models.SetDatabase(db)
 
 	// setup global app context

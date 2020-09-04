@@ -6,8 +6,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/postgres" // Gorm postgres dialect interface
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 func ConnectDB() (*gorm.DB, error) {
@@ -21,7 +21,7 @@ func ConnectDB() (*gorm.DB, error) {
 	dbURI := fmt.Sprintf("host=%s port=%s user=%s dbname=%s sslmode=disable password=%s", host, port, username, dbname, password)
 
 	// connect to db URI
-	db, err := gorm.Open("postgres", dbURI)
+	db, err := gorm.Open(postgres.Open(dbURI), &gorm.Config{})
 
 	if err != nil {
 		log.Println("error", err)
@@ -32,9 +32,8 @@ func ConnectDB() (*gorm.DB, error) {
 
 func WaitForDB() {
 	for {
-		if db, err := ConnectDB(); err == nil {
+		if _, err := ConnectDB(); err == nil {
 			fmt.Println("Connected to database")
-			db.Close()
 			break
 		}
 		time.Sleep(2 * time.Second)

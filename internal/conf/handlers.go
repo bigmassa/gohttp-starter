@@ -7,7 +7,7 @@ import (
 
 	"github.com/go-playground/validator/v10"
 	"github.com/gorilla/sessions"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type AppContext struct {

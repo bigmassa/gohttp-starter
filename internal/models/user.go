@@ -9,7 +9,7 @@ import (
 	"github.com/bigmassa/gohttp-starter/internal/utils"
 
 	"github.com/binaryknights/gutil"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type User struct {
